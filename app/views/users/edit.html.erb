@@ -1,0 +1,28 @@
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>User info</h1>
+<p>Image</p>
+<p>選択されていません</p>
+
+<%= form_with model: @user do |f| %>
+
+
+ <h4>Name</h4>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+
+ <br> <label for="inputImage">Image</label>
+  <br><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+
+ <h4>Introduction</h4>
+  <%= f.text_area :introduction %>
+
+  <%= f.submit 'Update User' %>
+
+  <% end %>
